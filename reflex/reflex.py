@@ -125,6 +125,7 @@ def init(
 
 
 def _run(
+    app: str,
     env: constants.Env = constants.Env.DEV,
     frontend: bool = True,
     backend: bool = True,
@@ -236,6 +237,9 @@ def _run(
 
 @cli.command()
 def run(
+    app: str = typer.Option(
+        "Specify how to load the application."
+    ),
     env: constants.Env = typer.Option(
         constants.Env.DEV, help="The environment to run the app in."
     ),
@@ -257,7 +261,7 @@ def run(
     ),
 ):
     """Run the app in the current directory."""
-    _run(env, frontend, backend, frontend_port, backend_port, backend_host, loglevel)
+    _run(app, env, frontend, backend, frontend_port, backend_port, backend_host, loglevel)
 
 
 @cli.command()
